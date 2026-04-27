@@ -2,8 +2,10 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, 
-  // Use connectionString for easy deployment (Supabase/Render)
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // This line is CRITICAL for Neon + Render
+  }
 });
 
 module.exports = pool;

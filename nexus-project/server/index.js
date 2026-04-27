@@ -13,10 +13,7 @@ const app = express();
 // Replace the simple app.use(cors()); with this:
 
 const corsOptions = {
-    origin: [
-        'https://nexus-coral-delta.vercel.app', // Your live Vercel frontend
-        'http://localhost:5173'                 // Your local React development URL
-    ],
+    origin: '*', // Allow all origins (for development). Change this in production!
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
