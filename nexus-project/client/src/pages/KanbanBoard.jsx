@@ -22,7 +22,7 @@ const KanbanBoard = () => {
 
     const fetchTasks = async () => {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/tasks/${projectId}`, {
+        const res = await axios.get(`/tasks/${projectId}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         setTasks(res.data);
@@ -35,7 +35,7 @@ const KanbanBoard = () => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         console.log("Adding task with title:", taskTitle, "and priority:", taskPriority);
-        await axios.post('http://localhost:5000/tasks', { project_id: projectId, title: taskTitle ,priority: taskPriority }, {
+        await axios.post('/tasks', { project_id: projectId, title: taskTitle ,priority: taskPriority }, {
             headers: { Authorization: `Bearer ${token}` }
         });
         setTaskTitle("");
@@ -45,7 +45,7 @@ const KanbanBoard = () => {
 
     const updateStatus = async (id, newStatus) => {
         const token = localStorage.getItem('token');
-        await axios.patch(`http://localhost:5000/tasks/${id}`, { status: newStatus }, {
+        await axios.patch(`/tasks/${id}`, { status: newStatus }, {
             headers: { Authorization: `Bearer ${token}` }
         });
         fetchTasks();

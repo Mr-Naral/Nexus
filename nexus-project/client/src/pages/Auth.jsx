@@ -10,7 +10,7 @@ const Auth = ({ setToken }) => {
     e.preventDefault();
     const endpoint = isLogin ? '/auth/login' : '/auth/signup';
     try {
-      const res = await axios.post(`http://localhost:5000${endpoint}`, formData);
+      const res = await axios.post(`${endpoint}`, formData);
       if (isLogin) {
         // 2. Set token in storage AND in React state
         localStorage.setItem('token', res.data.token);
@@ -28,7 +28,7 @@ const Auth = ({ setToken }) => {
 //     e.preventDefault();
 //     const endpoint = isLogin ? '/auth/login' : '/auth/signup';
 //     try {
-//       const res = await axios.post(`http://localhost:5000${endpoint}`, formData);
+//       const res = await axios.post(`${endpoint}`, formData);
 //       if (isLogin) {
 //         localStorage.setItem('token', res.data.token);
 //         alert(`Welcome back, ${res.data.user.name}!`);

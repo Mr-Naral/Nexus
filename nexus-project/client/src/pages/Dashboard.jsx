@@ -12,7 +12,7 @@ const Dashboard = ({ setToken }) => {
     const fetchProjects = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://localhost:5000/projects', {
+            const res = await axios.get('/projects', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setProjects(res.data);
@@ -30,7 +30,7 @@ const Dashboard = ({ setToken }) => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/projects', newProject, {
+            await axios.post('/projects', newProject, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setShowModal(false);
