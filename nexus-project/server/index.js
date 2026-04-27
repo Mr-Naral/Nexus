@@ -9,7 +9,22 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+// Replace the simple app.use(cors()); with this:
+
+const corsOptions = {
+    origin: [
+        'https://nexus-coral-delta.vercel.app', // Your live Vercel frontend
+        'http://localhost:5173'                 // Your local React development URL
+    ],
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests for all routes
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Routes
